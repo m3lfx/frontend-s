@@ -55,7 +55,7 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/login', { email, password }, config)
+        const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/login`, { email, password }, config)
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -81,7 +81,7 @@ export const register = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/register', userData, config)
+        const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/register`, userData, config)
 
         dispatch({
             type: REGISTER_USER_SUCCESS,
@@ -99,7 +99,7 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
     try {
         dispatch({ type: LOAD_USER_REQUEST })
-        const { data } = await axios.get('/api/v1/me')
+        const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/me`)
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user
@@ -115,7 +115,7 @@ export const loadUser = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
 
     try {
-        await axios.get('/api/v1/logout')
+        await axios.get(`${process.env.REACT_APP_API}/api/v1/logout`)
 
         dispatch({
             type: LOGOUT_SUCCESS,
@@ -140,7 +140,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put('/api/v1/me/update', userData, config)
+        const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/me/update`, userData, config)
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
             payload: data.success
