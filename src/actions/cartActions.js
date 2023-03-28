@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { ADD_TO_CART, REMOVE_ITEM_CART, SAVE_SHIPPING_INFO, CLEAR_CART } from '../constants/cartConstants'
+import { ADD_TO_CART, REMOVE_ITEM_CART, SAVE_SHIPPING_INFO, CLEAR_CART  } from '../constants/cartConstants'
 
 export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
-    const { data } = await axios.get(`/api/v1/product/${id}`)
+    const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/${id}`)
     dispatch({
         type: ADD_TO_CART,
         payload: {
@@ -19,7 +19,6 @@ export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
 }
 
 export const removeItemFromCart = (id) => async (dispatch, getState) => {
-
     dispatch({
         type: REMOVE_ITEM_CART,
         payload: id
@@ -34,8 +33,10 @@ export const saveShippingInfo = (data) => async (dispatch) => {
     })
     localStorage.setItem('shippingInfo', JSON.stringify(data))
 }
+
 export const clearCart = () => async (dispatch) => {
     dispatch({
         type: CLEAR_CART,
     })
 }
+
