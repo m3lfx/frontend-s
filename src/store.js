@@ -38,7 +38,8 @@ let initialState = {
              ? JSON.parse(localStorage.getItem('shippingInfo'))
             : {}
     },
-    user: {}
+    user: {},
+    auth: {},
 
 }
 
